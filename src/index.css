@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.block {
+  display: block;
+}
+
+.measure {
+  text-align: left;
+  margin-bottom: 1.5rem;
+
+  &.--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+/* form {
+  padding: 32px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+} */
+
+.input {
+  @apply w-96 block overflow-x-hidden overflow-y-clip;
+}
