@@ -7,7 +7,7 @@ import { Button, Container } from "@medusajs/ui";
 
 export default observer(({ form }) => (
     <Container>
-        <form onSubmit={form.onSubmit} className="mx-auto w-fit">
+        <form onSubmit={form.onSubmit} className="mx-auto w-fit text-black">
             {
                 slugs.map((slug, i) => (
                     <SimpleInput key={slug} field={form.$(slug)} />

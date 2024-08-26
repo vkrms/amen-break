@@ -8,6 +8,7 @@ import { slugs, questions } from '../data/questions';
 export const OneThought: React.FC = () => {
     const [fields, setFields] = useState([]);
     const { id } = useParams();
+    
     useEffect(() => {
         // fetch fields from firebase
         fetchThought(id).then((thought) => {

@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: var(--bg-base);
+  min-height: 100vh;
 }
 
 .logo {

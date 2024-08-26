@@ -8,7 +8,8 @@ const plugins = {
 };
 
 import { slugs, questions } from "./data/questions";
-import { writeData } from "./lib/firebase";
+import { writePersonalData } from "./lib/firebase";
+import { store } from "./lib/store";
 
 const fields = [
     // {
@@ -57,11 +58,11 @@ const hooks = {
         autorun(() => form.submitting && console.log("Submitting..."));
     },
     onSuccess(form) {
-        alert("Form is valid! Send the request here.");
+        alert("todo: run actual valiation here");
         // get field values
         console.log("Form Values!", form.values());
 
-        writeData(form.values());
+        writePersonalData(form.values(), store.email!);
     },
     onError(form) {
         alert("Form has errors!");
