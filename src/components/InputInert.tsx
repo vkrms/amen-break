@@ -1,12 +1,25 @@
 import { Label, Textarea } from "@medusajs/ui";
-import { observer } from "mobx-react";
+import { useState, useRef, useEffect } from "react";
 
-export const InputInert: React.FC = observer(({ label, value }) => (
-    <div className="measure mb-6">
-        <Label className="block mb-2">
-            {label}
-        </Label>
+interface Props {
+    label: string;
+    value: string;
+}
 
-        <Textarea value={value} className={'input'} readOnly/>
-    </div>
-));
+export const InputInert = ({ label, value }: Props) => {
+    const ref = useRef<HTMLTextAreaElement>(null)    
+    const [height, setHeight] = useState<string>('auto');
+
+    useEffect(() => {
+        setHeight(`${ref.current?.scrollHeight ?? '-1'}px`);
+    },[value])
+    
+    return (
+        <div className="measure mb-6">
+            <Label className="block mb-2">
+                {label}
+            </Label>
+
+            <Textarea value={value} className={'input'} readOnly style={{height}} ref={ref} />
+        </div>
+)};

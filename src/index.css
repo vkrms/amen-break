@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --button-inverted: #ff7300;
+}
+
 .block {
   display: block;
 }
@@ -26,7 +30,15 @@
   @apply w-96 block overflow-x-hidden overflow-y-clip;
 }
 
-label {
-  /* I was unable to turn off the dark theme! */
-  color: #808080;
+body {
+  color: var(--fg-base);
+}
+
+.control-group {
+  @apply mb-4 block;
+}
+
+article {
+  text-wrap: balance;
+  @apply prose text-left max-w-[56ch]; 
 }

@@ -3,10 +3,10 @@ import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 import { getFirestore, collection, addDoc, getDocs, getDoc, doc, query, orderBy, serverTimestamp, updateDoc } from "firebase/firestore";
-import { store } from "./store";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// todo: put sensitive stuff in the .env
 const firebaseConfig = {
     apiKey: "AIzaSyCc8X4lYSuJKxcASFmOG-TxatSWQTq_Ifs",
     authDomain: "amen-brother.firebaseapp.com",
@@ -21,17 +21,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function writeData(data: object) {
-    try {
-        const docRef = await addDoc(collection(db, "zero"), {
-            ...data,
-            timestamp: serverTimestamp()
-        });
-        console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-        console.error("Error adding document: ", e);
-    }
-}
+// export async function writeData(data: object) {
+//     try {
+//         const docRef = await addDoc(collection(db, "zero"), {
+//             ...data,
+//             timestamp: serverTimestamp()
+//         });
+//         console.log("Document written with ID: ", docRef.id);
+//     } catch (e) {
+//         console.error("Error adding document: ", e);
+//     }
+// }
 
 export async function writePersonalData(data: object, email: string) {
     const collectionId = email;
@@ -40,7 +40,7 @@ export async function writePersonalData(data: object, email: string) {
             ...data,
             timestamp: serverTimestamp()
         });
-        console.log("Document written with ID: ", docRef.id);
+        return docRef;
     } catch (e) {
         console.error("Error adding document: ", e);
     }
@@ -51,9 +51,10 @@ export async function fetchAllRows(email: string) {
     return await getDocs(q);
 }
 
-export async function fetchThought(id: string) {
+export async function fetchPersonalThought(id: string, email: string) {
+    const collectionId = email;
     try {
-        const docRef = doc(db, "zero", id);
+        const docRef = doc(db, collectionId, id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             return docSnap.data();
@@ -68,17 +69,21 @@ export async function fetchThought(id: string) {
 
 const auth = getAuth();
 
-export async function signUp(email: string, password: string) {
+export async function signUp(
+    email: string,
+    password: string,
+    doAuth: (...args: unknown[]) => void,
+) {
     return createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
             
-            // console.log('the login magic worked', { user });
+            //@ts-expect-error: I'm sure it's there
             const token = user.accessToken;
 
 
-            user.email && token && store.doAuth(user.email, token);
+            user.email && token && doAuth(user.email, token);
             return user;
         })
         .catch((error) => {
@@ -99,21 +104,26 @@ export async function updateMissingTimestamps() {
     });
 }
 
-export async function signIn(email: string, password: string) {
+export async function signIn(
+    email: string,
+    password: string,
+    doAuth: (...args: unknown[]) => void,
+) {
     return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             console.log('the login magic worked', { user });
 
+            //@ts-expect-error: I'm sure it's there
             const token = user.accessToken;
 
-            user.email && token && store.doAuth(user.email, token);
+            user.email && token && doAuth(user.email, token);
             return user;
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            const { code, msg } = error;
+            console.warn({ code, msg });
         });
 }
 

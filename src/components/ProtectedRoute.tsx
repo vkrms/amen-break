@@ -1,11 +1,13 @@
-import { observer } from "mobx-react";
-import { store } from "../lib/store";
 import { Navigate } from "react-router-dom";
+import { useStore } from "../lib/z-store";
 
 interface Props {
     component: JSX.Element;
 }
 
-export const ProtectedRoute = observer(({ component }: Props) => {
-    return store.isAuthed ? component : <Navigate to="/login" />
-})
+export const ProtectedRoute = ({ component }: Props) => {
+    const { isAuthenticated } = useStore(state => state)
+    // console.log({isAuthenticated})
+
+    return isAuthenticated() ? component : <Navigate to="/login" />
+}

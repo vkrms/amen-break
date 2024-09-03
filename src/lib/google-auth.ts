@@ -1,11 +1,10 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { store } from "./store";
 
 const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
 
-export function doMagic() {
+export function doMagic(doAuth) {
     signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
@@ -17,7 +16,7 @@ export function doMagic() {
             // ...
             console.log('the login magic worked', { user, token });
 
-            user.email && token && store.doAuth(user.email, token);
+            user.email && token && doAuth(user.email, token);
             
         }).catch((error) => {
             // Handle Errors here.

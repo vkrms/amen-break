@@ -6,7 +6,7 @@ export const questions = [
     'What is the outcome of that action?',
     'Is the thought true?',
     'Is it absolutely true?',
-    'How would I feel if I didn’t have that thought?',
+    'How would I feel if I didn’t have that thought? Imagine it',
     'How would I act if I didn’t have that thought?',
     'What is the opposite of that thought? Dwell on it.',
 ]

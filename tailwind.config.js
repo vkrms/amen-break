@@ -1,4 +1,5 @@
 import medusaPreset from "@medusajs/ui-preset";
+import typography from "@tailwindcss/typography";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -12,6 +13,8 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    typography,
+  ],
 }
 
