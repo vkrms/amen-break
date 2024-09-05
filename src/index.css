@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* vars */
 :root {
   --button-inverted: #ff7300;
+  --tw-shadow: none;
 }
 
 .block {

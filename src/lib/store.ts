@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+// import { makeAutoObservable, runInAction } from "mobx";
 import { fetchAllRows } from "./firebase";
 import Cookies from 'js-cookie';
 
@@ -13,9 +13,9 @@ class Store {
     rows: TableRow[] = [];
 
     constructor() {
-        makeAutoObservable(this);
+        // makeAutoObservable(this);
 
-        // check cookies fro email and token
+        // check cookies from email and token
         const email = Cookies.get('email');
         const token = Cookies.get('token');
 
@@ -36,9 +36,9 @@ class Store {
 
             console.log({data})
 
-            runInAction(() => {
-                this.rows = data;
-            });
+            // runInAction(() => {
+            //     this.rows = data;
+            // });
         } catch (e) {
             console.error(e);
         }

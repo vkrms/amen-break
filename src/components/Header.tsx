@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
 
     return (
         <header className="flex justify-center items-center mb-6">
-            <Link to="/" className="mr-auto">
+            <Link to="/" className="mr-auto flex-none w-[40px]">
                 <img src={logo} alt="logo" className="h-10"/>
             </Link>
 

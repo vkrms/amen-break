@@ -14,7 +14,7 @@ export default {
     extend: {},
   },
   plugins: [
-    typography,
+    typography, 
   ],
 }
 

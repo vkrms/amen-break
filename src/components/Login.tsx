@@ -21,9 +21,8 @@ function handleForm({ e, navigate, action}: FormHandlerParams) {
     const formData = new FormData(e.currentTarget)
     const formDataObject = Object.fromEntries(formData.entries())
     const { email, password } = formDataObject
-    console.log('handling form', email, password)
 
-    action(email, password, doAuth)
+    action(email, password)
         .then(user => {
             console.log({user})
             navigate('/thoughts')

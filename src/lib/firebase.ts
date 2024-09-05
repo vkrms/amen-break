@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc, query, orderBy, serverTimestamp, updateDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc, query, orderBy, serverTimestamp, updateDoc, deleteDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -132,3 +132,12 @@ export async function signIn(
 // }).catch((error) => {
 //     console.error("Error updating documents: ", error);
 // });
+
+// delete doc by id
+export async function removeDoc(id: string, email: string) {
+    try {
+        return deleteDoc(doc(db, email, id));
+    } catch (e) {
+        console.error("Error deleting document: ", e);
+    }
+}

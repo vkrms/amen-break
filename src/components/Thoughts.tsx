@@ -19,7 +19,7 @@ export const Thoughts: React.FC = () => {
         <>
             <h1 className="text-2xl font-bold mb-4 text-left text-gray-500">Thoughts ({rows.length})</h1>
 
-            <Table className="text-left">
+            <Table className="text-left mb-6">
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>#</Table.HeaderCell>

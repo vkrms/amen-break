@@ -21,10 +21,6 @@ slugs.forEach(slug => {
 
 const schema = z.object(temp)
 
-// function submit() {
-//     console.log('submit');
-// }
-
 function clear() {
     console.log('clear');
 }
@@ -49,8 +45,6 @@ export const Form = () => {
     });
 
     const onSubmitRHF: SubmitHandler<Inputs> = data => {
-        alert('todo: add validation here');
-
         writePersonalData(data, email)
             .then(docRef => {
                 navigate(`/thoughts/${docRef!.id}`)
