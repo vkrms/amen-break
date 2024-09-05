@@ -1,14 +1,15 @@
-import Form from "../components/Form"
+import { Form } from "../components/Form"
 import { Thoughts } from "../components/Thoughts"
-import { OneThought } from "../components/OneThought"
+import { SingleThought } from "../components/SingleThought"
 import { Login } from "../components/Login"
 import { ProtectedRoute } from "../components/ProtectedRoute"
-import form from "../form"
+import { About } from "../components/About"
+// import form from "../form"
 
-export const routes = [
+export const routes = [  
   {
-    path: '/',
-    element: <ProtectedRoute component={<Form form={form} />} />,
+    path: '/add',
+    element: <ProtectedRoute component={<Form />} />,
     name: 'Add'
   },
   {
@@ -18,7 +19,7 @@ export const routes = [
   },
   {
     path: '/thoughts/:id',
-    element: <OneThought />,
+    element: <SingleThought />,
     name: 'Details',
     hidden: true,
   },
@@ -26,5 +27,12 @@ export const routes = [
     path: '/login',
     element: <Login />,
     name: 'Login',
+    hidden: true,
+  },
+  {
+    path: '/',
+    element: <About />,
+    name: 'About',
+    hidden: true,
   }
 ]

@@ -4,7 +4,6 @@ import { Header } from './components/Header'
 import { routes } from './lib/routes'
 import './App.css'
 
-
 function App() {
   return (
     <>

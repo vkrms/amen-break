@@ -1,20 +1,25 @@
-import { Table } from "@medusajs/ui";
+import { Table, Button } from "@medusajs/ui";
 import { questions } from "../data/questions";
 import { useEffect } from "react";
-import { store } from "../lib/store";
-import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
+import { PlusMini } from "@medusajs/icons";
+import { useStore } from "../lib/z-store";
 
-export const Thoughts: React.FC = observer(() => {
+export const Thoughts: React.FC = () => {
+    const { fetchData, rows } = useStore((state) => ({
+        fetchData: state.fetchData,
+        rows: state.rows,
+    }));
+
     useEffect(() => {
-        store.fetchData();
-    }, []);
+        fetchData()
+    }, [fetchData]);
 
     return (
         <>
-            <h1 className="text-2xl font-bold mb-4 text-left text-gray-500">Thoughts ({store.rowCount})</h1>
+            <h1 className="text-2xl font-bold mb-4 text-left text-gray-500">Thoughts ({rows.length})</h1>
 
-            <Table className="text-left">
+            <Table className="text-left mb-6">
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>#</Table.HeaderCell>
@@ -24,7 +29,7 @@ export const Thoughts: React.FC = observer(() => {
                 </Table.Header>
 
                 <Table.Body>
-                    {store.rows.map((row, index) => {
+                    {rows.map((row, index) => {
                         return (
                             <Table.Row key={row.id}>
                                 <Table.Cell>{index + 1}</Table.Cell>
@@ -38,6 +43,13 @@ export const Thoughts: React.FC = observer(() => {
                     })}
                 </Table.Body>
             </Table>
+
+            <Link to="/add">
+                <Button>
+                    Add
+                    <PlusMini/>
+                </Button>
+            </Link>
         </>
     )
-})
+}
