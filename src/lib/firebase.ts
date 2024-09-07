@@ -9,14 +9,17 @@ import { doAuth } from "./z-store";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // todo: put sensitive stuff in the .env
+
+const env = import.meta.env;
+
 const firebaseConfig = {
-    apiKey: "AIzaSyCc8X4lYSuJKxcASFmOG-TxatSWQTq_Ifs",
     authDomain: "amen-brother.firebaseapp.com",
     projectId: "amen-brother",
     storageBucket: "amen-brother.appspot.com",
-    messagingSenderId: "848258243078",
-    appId: "1:848258243078:web:8ada9fb6aee7d2e5d08187",
-    measurementId: "G-HX0FZQZXC7"
+    apiKey: env.VITE_FIREBASE_API_KEY,
+    messagingSenderId: env.VITE_MESSAGING_SENDER_ID,
+    appId: env.VITE_APP_ID,
+    measurementId: env.VITE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
