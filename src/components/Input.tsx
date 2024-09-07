@@ -1,6 +1,13 @@
 import { Label, Textarea } from "@medusajs/ui";
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
-export const Input = ({register, label, error}) => (
+type Props = {
+    register: UseFormRegisterReturn<string>;
+    label: string;
+    error?: FieldError;
+}
+
+export const Input: React.FC<Props> = ({register, label, error}) => (
     <div className="measure mb-6">
         <Label className="block mb-2">
             {label}

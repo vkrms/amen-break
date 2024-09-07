@@ -4,6 +4,8 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 
 import { getFirestore, collection, addDoc, getDocs, getDoc, doc, query, orderBy, serverTimestamp, updateDoc, deleteDoc } from "firebase/firestore";
 
+import { doAuth } from "./z-store";
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // todo: put sensitive stuff in the .env
@@ -72,7 +74,6 @@ const auth = getAuth();
 export async function signUp(
     email: string,
     password: string,
-    doAuth: (...args: unknown[]) => void,
 ) {
     return createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -107,7 +108,6 @@ export async function updateMissingTimestamps() {
 export async function signIn(
     email: string,
     password: string,
-    doAuth: (...args: unknown[]) => void,
 ) {
     return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {

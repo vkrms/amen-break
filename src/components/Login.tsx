@@ -1,7 +1,6 @@
 import { Heading, Input, Button, Label, Tabs } from "@medusajs/ui"
 import { doMagic } from '../lib/google-auth'
 import { signIn, signUp } from "../lib/firebase"
-import { useRowCount, useStore } from "../lib/z-store"
 import { GoogleButton } from "./google_button"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -13,7 +12,7 @@ interface FormEventParams {
 }
 
 interface FormHandlerParams extends FormEventParams {
-    action: (email: string, password: string) => Promise<any>
+    action: (email: string, password: string) => Promise<unknown>
 }
 
 function handleForm({ e, navigate, action}: FormHandlerParams) {
@@ -22,7 +21,7 @@ function handleForm({ e, navigate, action}: FormHandlerParams) {
     const formDataObject = Object.fromEntries(formData.entries())
     const { email, password } = formDataObject
 
-    action(email, password)
+    action(email as string, password as string)
         .then(user => {
             console.log({user})
             navigate('/thoughts')
@@ -36,8 +35,6 @@ function handleSignUpForm({e, navigate}: FormEventParams) {
 function handleSignInForm({e, navigate}: FormEventParams) {
     handleForm({e, navigate, action: signIn})
 }
-
-const { doAuth } = useStore.getState()
 
 export const Login: React.FC = () => {
     const [signin, setSignin] = useState(true)
@@ -54,7 +51,7 @@ export const Login: React.FC = () => {
                 <Tabs.Content value="signup">
                     <Heading level='h2' className="mb-4">Sign Up</Heading>
 
-                    <form onSubmit={(e) => handleSignUpForm({e, navigate, doAuth})}>
+                    <form onSubmit={(e) => handleSignUpForm({e, navigate })}>
                         <Label className="control-group">
                             <div>Email</div>
                             <Input type="email" name="email"/>
@@ -72,7 +69,7 @@ export const Login: React.FC = () => {
                 <Tabs.Content value="signin">
                     <Heading level='h2' className="mb-4">Sign In</Heading>
                     
-                    <form onSubmit={(e) => handleSignInForm({e, navigate, doAuth})}>
+                    <form onSubmit={(e) => handleSignInForm({e, navigate})}>
                         <Label className="control-group">
                             <div>Email</div>
                             <Input type="email" name="email" />
@@ -106,7 +103,7 @@ export const Login: React.FC = () => {
 
             {/* <Button onClick={doMagic}>sign in with google</Button> */}
 
-            <GoogleButton onClick={() => doMagic(doAuth)} />
+            <GoogleButton onClick={doMagic} />
 
             {/*
                 <form>
@@ -125,24 +122,24 @@ export const Login: React.FC = () => {
 
 }
 
-const BearCounter: React.FC = () => {
-    const bears = useStore(state => state.bears)
-    return <h1>{bears} around here...</h1>
-}
+// const BearCounter: React.FC = () => {
+//     const bears = useStore(state => state.bears)
+//     return <h1>{bears} around here...</h1>
+// }
 
-const BearControl: React.FC = () => {
-    // const increasePopulation = useStore(state => state.increasePopulation)
-    const { email, increasePopulation, isAuthenticated, setEmail } = useStore(state => state)
-    const rowCount = useRowCount()
-    return (
-        <>
-            <button onClick={increasePopulation}>one up {rowCount}</button>
-            <br/>
-            email is: {email}
-            <br/>
-            {isAuthenticated() ? 'logged in' : 'not logged in'}
-            <br/>
-            <Button onClick={() => setEmail('a@b.co')}>set email: a@b.co</Button>
-        </>
-    )
-}    
+// const BearControl: React.FC = () => {
+//     // const increasePopulation = useStore(state => state.increasePopulation)
+//     const { email, increasePopulation, isAuthenticated, setEmail } = useStore(state => state)
+//     const rowCount = useRowCount()
+//     return (
+//         <>
+//             <button onClick={increasePopulation}>one up {rowCount}</button>
+//             <br/>
+//             email is: {email}
+//             <br/>
+//             {isAuthenticated() ? 'logged in' : 'not logged in'}
+//             <br/>
+//             <Button onClick={() => setEmail('a@b.co')}>set email: a@b.co</Button>
+//         </>
+//     )
+// }    

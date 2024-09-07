@@ -1,15 +1,16 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { doAuth } from "./z-store";
 
 const provider = new GoogleAuthProvider();
 
 const auth = getAuth();
 
-export function doMagic(doAuth) {
+export function doMagic() {
     signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
+            const token = credential?.accessToken;
             // The signed-in user info.
             const user = result.user;
             // IdP data available using getAdditionalUserInfo(result)
@@ -27,5 +28,7 @@ export function doMagic(doAuth) {
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
             // ...
+
+            console.warn({ errorCode, errorMessage, email, credential });
         });
 }

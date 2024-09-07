@@ -45,6 +45,8 @@ export const Form = () => {
     });
 
     const onSubmitRHF: SubmitHandler<Inputs> = data => {
+        if (!email) return
+        
         writePersonalData(data, email)
             .then(docRef => {
                 navigate(`/thoughts/${docRef!.id}`)
