@@ -1,5 +1,5 @@
-import { Table, Button } from "@medusajs/ui";
-import { questions } from "../data/questions";
+import { Table, Button, Text } from "@medusajs/ui";
+import { questionsRu as questions } from "../data/questions";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PlusMini } from "@medusajs/icons";
@@ -18,6 +18,10 @@ export const Thoughts: React.FC = () => {
     return (
         <>
             <h1 className="text-2xl font-bold mb-4 text-left text-gray-500">Thoughts ({rows.length})</h1>
+
+            <Text>
+                When reading at that list, remember that those are the thoughts you are supposed to challenge, not believe in.
+            </Text>
 
             <Table className="text-left mb-6">
                 <Table.Header>

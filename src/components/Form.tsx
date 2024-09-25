@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { Input as SimpleInput } from './Input';
-import { slugs, questions } from '../data/questions';
+import { slugs, questionsRu as questions } from '../data/questions';
 import { writePersonalData } from "../lib/firebase";
 import { useStore } from "../lib/z-store";
 import { z, ZodType } from "zod"; // Add new import

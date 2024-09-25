@@ -3,7 +3,7 @@ import { InputInert } from './InputInert';
 import { useNavigate, useParams } from 'react-router-dom';
 import { removeDoc, fetchPersonalThought } from '../lib/firebase';
 import { Container, Prompt, Button } from "@medusajs/ui";
-import { slugs, questions } from '../data/questions';
+import { slugs, questionsRu as questions } from '../data/questions';
 import { useStore } from '../lib/z-store';
 
 
