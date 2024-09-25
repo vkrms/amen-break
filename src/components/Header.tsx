@@ -16,12 +16,12 @@ export const Header: React.FC = () => {
     const email = useStore(state => state.email)
 
     return (
-        <header className="flex justify-center items-center mb-6">
-            <Link to="/" className="mr-auto flex-none w-[40px]">
+        <header className="header flex justify-center items-center mb-6">
+            <Link to="/" className="mr-auto flex-none w-[40px] logo">
                 <img src={logo} alt="logo" className="h-10"/>
             </Link>
 
-            <div className="bob mr-auto">Logged in as: {email}</div>
+            <div className="loggedin mr-auto">Logged in as: {email}</div>
 
             <div className='menu'>
                 {routes.filter(route => !route.hidden).map((route) => (

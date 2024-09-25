@@ -44,3 +44,52 @@ article {
   text-wrap: balance;
   @apply prose text-left max-w-[56ch]; 
 }
+
+
+
+@media (max-width: 600px) {
+  #root {
+    padding: 3px;
+  }
+
+  .logo {
+    @apply hidden;
+  }
+
+  .inputs-container {
+    @apply p-4;
+  }
+
+  .input {
+    @apply w-full;
+  }
+
+  .loggedin {
+    @apply w-full;
+  }
+
+  .header {
+    @apply flex flex-wrap gap-2 pt-2;
+  }
+
+  .outer-container {
+    padding: 3px;
+  }
+
+  .thoughts-disclaimer {
+    @apply leading-tight mb-4 px-4 text-left;
+    text-wrap: balance;
+  }
+
+  .thoughts-heading {
+    @apply px-4;
+  }
+
+  article {
+    padding-inline: 16px;
+  }
+
+  .login-wrap {
+    padding-inline: 16px;
+  }
+}

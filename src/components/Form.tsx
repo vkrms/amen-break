@@ -60,8 +60,8 @@ export const Form = () => {
     }
 
     return (
-        <Container>
-            <form onSubmit={handleSubmit(onSubmitRHF)} className="mx-auto w-fit">
+        <Container className="outer-container">
+            <form onSubmit={handleSubmit(onSubmitRHF)} className="mx-auto w-fit inputs-container some-random-class">
                 {
                     slugs.map((slug, i) => (
                         <SimpleInput

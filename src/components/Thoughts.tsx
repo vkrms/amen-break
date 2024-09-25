@@ -17,9 +17,9 @@ export const Thoughts: React.FC = () => {
 
     return (
         <>
-            <h1 className="text-2xl font-bold mb-4 text-left text-gray-500">Thoughts ({rows.length})</h1>
+            <h1 className="text-2xl font-bold mb-4 text-left text-gray-500 thoughts-heading">Thoughts ({rows.length})</h1>
 
-            <Text>
+            <Text className="thoughts-disclaimer">
                 When reading at that list, remember that those are the thoughts you are supposed to challenge, not believe in.
             </Text>
 

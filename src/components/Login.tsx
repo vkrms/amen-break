@@ -46,7 +46,7 @@ export const Login: React.FC = () => {
     const navigate = useNavigate()
 
     return (
-        <div className="w-80 text-left">
+        <div className="w-80 text-left login-wrap">
             <Tabs defaultValue="signin">
                 <Tabs.Content value="signup">
                     <Heading level='h2' className="mb-4">Sign Up</Heading>
